@@ -1,3 +1,6 @@
+# My
+.y_bin/
+
 # General
 .idea/
 .ignore/
@@ -21,3 +24,4 @@ cmake-build-debug/
 bin/
 obj/
 *.user
+PublishProfiles/
