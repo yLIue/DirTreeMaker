@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:DirTreeMaker"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DirTreeMaker.Resources;component/DarkTheme.xaml"/>
+                <ResourceDictionary Source="/DirTreeMaker;component/Framework/Framework.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

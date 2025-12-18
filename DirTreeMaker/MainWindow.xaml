@@ -5,40 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DirTreeMaker"
         mc:Ignorable="d"
-        Title="DirTreeMaker" Height="600" Width="900"
-        Background="#1E1E1E" Foreground="#D4D4D4">
+        Title="DirTreeMaker" Height="600" Width="1000"
+        Background="{DynamicResource ThemeColor}">
 
     <Window.Resources>
+        
     </Window.Resources>
 
     <Grid>
-
-        <!--分3个区域,左边是输入区域, 右边是输出区域, 中间是分隔栏-->
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <!--左边输入区域-->
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-            </Grid.RowDefinitions>
-        </Grid>
-        
-        <!--分隔栏-->
-        <GridSplitter Grid.Column="1" 
-              Width="5" 
-              HorizontalAlignment="Stretch" 
-              Background="#333333"
-        />
 
-        <!--右边输出区域-->
-        <Grid Grid.Column="2">
+        <Border Grid.Column="0" Background="{DynamicResource ThemeColor}" BorderBrush="{DynamicResource SplitterColor}" BorderThickness="0,0,1,0" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Style="{StaticResource TitleStyle}" Text="Menu"/>
+
+                <StackPanel Grid.Row="1" Margin="0,20,0,0">
+                    
+
+                    <Button Style="{StaticResource SidebarButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="{StaticResource IconSettings}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Width="16" Height="16" Stretch="Uniform" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="设置" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="GitHubClick">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="{StaticResource IconGithub}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Width="16" Height="16" Stretch="Uniform" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="GitHub" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Margin="0,0,0,20">
+                    <Button Style="{StaticResource SidebarButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="{StaticResource IconAbout}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Width="16" Height="16" Stretch="Uniform" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="关于版本" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="5">
             <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Style="{StaticResource TitleStyle}" VerticalAlignment="Center" Text="Tree" />
+            <TextBox Grid.Row="1" Text="{Binding OutputText}" IsReadOnly="True" Background="{DynamicResource ThemeColor}"/>
+        </Grid>
+
+
+        <GridSplitter Grid.Column="2" Width="5" HorizontalAlignment="Stretch" Background="{DynamicResource SplitterColor}"/>
+
+
+        <Grid Grid.Column="3" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Style="{StaticResource TitleStyle}" VerticalAlignment="Center" Text="Input"/>
+            <TextBox 
+                Grid.Row="1" 
+                Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}"
+                Background="{DynamicResource InputAreaColor}"/>
         </Grid>
 
     </Grid>
-    
+
 </Window>
